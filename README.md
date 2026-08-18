@@ -1,30 +1,59 @@
 # A/B Testing & Conversion Optimization
 
-## Business objective
+> **Portfolio project:** statistical experimentation workflow using a public conversion dataset and a simulated treatment/control assignment.
 
-Evaluate whether a simulated product change improves conversion and demonstrate a defensible experimentation workflow.
+## Executive summary
+
+**Question:** Did the simulated product change improve conversion?
+
+The treatment group converted at **9.37%** versus **9.27%** for control: a **+0.10 percentage-point** observed lift (about **+1.11% relative lift**). Both groups produced 559 conversions. The repository includes the Python statistical test, reproducible result snapshot, and executive visual.
+
+**Decision principle:** the point estimate alone is not enough to ship a change. The analysis therefore evaluates statistical evidence and recommends checking confidence intervals, experiment duration, sample-ratio integrity, and guardrail metrics before rollout.
+
+## Dashboard preview
+
+![Control vs treatment conversion rate](visuals/ab_conversion_rate.svg)
+
+### Supporting views
+
+- Conversion by acquisition channel — `visuals/ab_channel_conversion.svg`
+- Conversion by device — `visuals/ab_device_conversion.svg`
+- Reproducible result table — `analysis/experiment_results.csv`
+
+## Analysis workflow
+
+1. Validate the experiment grain and required fields.
+2. Confirm one row per user and valid control/treatment labels.
+3. Calculate users, converters, conversion rate, absolute lift, and relative lift.
+4. Run a two-proportion z-test.
+5. Interpret the result conservatively rather than treating any positive point estimate as proof.
+6. Translate the statistical result into a product decision framework.
 
 ## Dataset provenance
 
-The starting conversion dataset is a public conversion dataset. The portfolio experiment is explicitly treated as **simulated**; the experiment design, statistical analysis, validation, and recommendations are independent portfolio work.
+The underlying conversion dataset is public. A public source copy was supplied during project setup: `https://github.com/jainds/eda-for-conversion-rate-dataset`.
 
-**Source reference:** https://github.com/jainds/eda-for-conversion-rate-dataset
+**Important:** the source dataset is not being claimed as original. The experiment framing, validation, Python implementation, statistical interpretation, visualizations, and business recommendations in this repository are independent portfolio work.
 
-## Result snapshot
+## Repository structure
 
-The supplied simulated sample contains **6,033 control users** and **5,967 treatment users**. Both groups contain **559 converters**, producing conversion rates of approximately **9.27%** and **9.37%**. The analysis in `notebooks/ab_test_analysis.py` tests whether this small observed difference is statistically meaningful.
+```text
+analysis/
+  experiment_results.csv
+  README.md
+notebooks/
+  ab_test_analysis.py
+visuals/
+  ab_conversion_rate.svg
+  ab_channel_conversion.svg
+  ab_device_conversion.svg
+  README.md
+```
 
-## Questions
+## Tools
 
-- Is treatment conversion higher than control?
-- What are the absolute and relative lifts?
-- Is the observed difference statistically significant?
-- What additional checks should be completed before a real product rollout?
+Python · pandas · statsmodels · Statistics · SQL · Power BI
 
-## Dashboard
+## Portfolio boundary
 
-See [`dashboard/README.md`](dashboard/README.md) for the executive experiment dashboard specification.
-
-## Stack
-
-Python · Statistics · SQL · Power BI
+This is a **simulated experiment for portfolio purposes**. It demonstrates how an analyst should evaluate an A/B test; it is not evidence from a real company experiment.
