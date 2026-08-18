@@ -2,27 +2,29 @@
 
 ## Business objective
 
-Demonstrate a rigorous experimentation workflow for deciding whether a simulated product change produces a meaningful conversion improvement.
+Evaluate whether a simulated product change improves conversion and demonstrate a defensible experimentation workflow.
 
 ## Dataset provenance
 
-The starting conversion dataset is a public dataset containing session-level user characteristics and a conversion outcome. A public copy was supplied during project setup.
+The starting conversion dataset is a public conversion dataset. The portfolio experiment is explicitly treated as **simulated**; the experiment design, statistical analysis, validation, and recommendations are independent portfolio work.
 
 **Source reference:** https://github.com/jainds/eda-for-conversion-rate-dataset
 
-> The source dataset is public. The portfolio experiment design, validation, statistical test, interpretation, and recommendations are independently implemented.
+## Result snapshot
 
-## Originality
-
-This repository does not reproduce another analyst's SQL, notebook, README, or conclusions.
+The supplied simulated sample contains **6,033 control users** and **5,967 treatment users**. Both groups contain **559 converters**, producing conversion rates of approximately **9.27%** and **9.37%**. The analysis in `notebooks/ab_test_analysis.py` tests whether this small observed difference is statistically meaningful.
 
 ## Questions
 
-- Is the treatment conversion rate higher than control?
-- What is the absolute and relative lift?
+- Is treatment conversion higher than control?
+- What are the absolute and relative lifts?
 - Is the observed difference statistically significant?
-- What additional checks should be completed before shipping a product change?
+- What additional checks should be completed before a real product rollout?
+
+## Dashboard
+
+See [`dashboard/README.md`](dashboard/README.md) for the executive experiment dashboard specification.
 
 ## Stack
 
-Python · Statistics · SQL
+Python · Statistics · SQL · Power BI
